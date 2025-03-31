@@ -1,4 +1,4 @@
-package Main;
+
 
 import javax.swing.JFrame;
 
@@ -20,7 +20,6 @@ public class Game extends JFrame{
     
 
     public static void main(String[] args) {
-        System.out.println("it works???");
         Game game = new Game();
 
     }

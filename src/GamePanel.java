@@ -1,9 +1,9 @@
-package Main;
+
 
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements Runnable {
 
 //SCREEN SETTINGS
 final int OringnalTileSIze = 16; //16x16
@@ -20,12 +20,35 @@ final int screenHeight = MaxScrROw * tileSize;  //768 pixels
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
     }
+    Thread gameThread;
 
+    public void startGameThread(){
+        gameThread = new Thread(this);
+        gameThread.start();
+    }
+
+
+    @Override
+    public void run() {
+       while (gameThread != null) {
+         
+            // 1 Update
+            update();
+            // 2 Draw
+            repaint();
+
+       }
+    }
+
+    public void update(){
+        System.out.println("Update");
+    }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.fillRect(0, 0,32,32);
-        g.setColor(Color.BLACK);
-
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setColor(Color.red);
+        g2.fillRect(48, 48, tileSize, tileSize);
+        g2.dispose();
     }
 
 }
